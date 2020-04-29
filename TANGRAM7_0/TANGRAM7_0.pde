@@ -1,5 +1,6 @@
 float figuras[][]=new float [7][9];// x, y, angulo, color 1, color 2, color 3, color 4, color 5, color 6
 float angulo=-0.349066;
+int movtec=1;
 boolean teclado=false;
 boolean pistas=false;
 boolean jill=false;
@@ -171,16 +172,18 @@ void draw() {
   tint(255, 0);
   background(0, 255, 162);
   //Forma grande2
-  if ((abs(mouseX-100)<=50) && (abs(mouseY-500)<=25) || pistas) {
+  System.out.println(pistas + " pistas ");
+  if ((abs(pmouseX-115)<=100) && (abs(pmouseY-500)<=25) || pistas) {
+    System.out.println(" prueba ");
     cuadrado=100;
   } else {
     cuadrado=0;
   }
   fill(0, cuadrado, 0);
-  rect(100, 500, 100, 50);
+  rect(115, 500, 200, 50);
   fill(255-cuadrado, 255-cuadrado, 255-cuadrado);
   textSize(30);
-  text("pistas", 57, 500+(25/2));
+  text("pistas o  ( M )" , 18, 500+(25/2));
   s2 = createShape();
   s2.beginShape();
   s2.fill(cs2);
@@ -215,9 +218,7 @@ void draw() {
   s4.endShape(CLOSE);
   shape(s4, 0, 0);
   image(niveles, width/2, height/2);
-  if (!funciona) {
-    System.out.println( " bandera 1 ");
-    System.out.println( key +" key ");    
+  if (!funciona) {  
     switch (key) {
     case 'r':
     case 'R':
@@ -257,34 +258,6 @@ void draw() {
     default:
       break;
     }
-    if(control<7){
-      System.out.println(key + " key ");
-    switch (key) {
-    case 'w':
-    case 'W':
-    System.out.println(" arriba ");
-      figuras[control][0]+=0;
-      figuras[control][1]-=30;
-      case 's':
-      case 'S':
-    System.out.println(" abajo ");
-      figuras[control][0]+=0;
-      figuras[control][1]+=30;
-      case 'a':
-      case 'A':
-    System.out.println(" izquierda ");
-      figuras[control][0]-=30;
-      figuras[control][1]+=0;
-      case 'd':
-      case 'D':
-    System.out.println(" derecha ");
-      figuras[control][0]+=30;
-      figuras[control][1]+=0;
-      default:
-      break;
-    }
-    System.out.println(control + "control");
-    }
   }
   if ((key == '1' || key=='2' || key=='4' || key=='3' || key == '5')) {
     guardarkey=key;
@@ -316,7 +289,6 @@ void draw() {
     image(gatorecostado, (width/2)+50, height/2);
     tint(255, 0);
     scale(1/(float)(Math.sqrt((39287.0/26318.0))));
-    System.out.println( " en mantnimiento ");
     break;
   case '4':
     guardarkey='4';
@@ -335,7 +307,6 @@ void draw() {
     image(condor, (width/2)+50, height/2);
     tint(255, 0);
     scale(1/(float)(Math.sqrt((39287.0/26688.0))));
-    System.out.println( " en mantnimiento 2");
     break;
   default:
     break;
@@ -414,7 +385,6 @@ void draw() {
       } else if (espejo_paral==0) {
         espejo_paral=1;
       } else {
-        System.out.println("error primario numero 4 ");
       }
       mousePressed=false;
     }
@@ -432,7 +402,6 @@ void draw() {
         }
       }
     }
-    System.out.println(" total counter " + totalcounter + " white counter " + whitecounter );
     if (whitecounter<=850) {
       tint(255, 255);
       image(imagen, width/2, height/2);
@@ -442,31 +411,87 @@ void draw() {
     fill(255, 255, 255);
     rect((width/2)+50, (height/2)-10, 400+100, 300-20);
     fill(0, 0, 0);
-    textSize(30);
-    text("1: juego libre", (width/2)-(width/4), (height/4)+30);
-    text("2: casa", (width/2)-(width/4), (height/4)+30*2);
-    text("3: gato", (width/2)-(width/4), (height/4)+30*3);
-    text("4: pato", (width/2)-(width/4), (height/4)+30*4);
-    text("5: condor", (width/2)-(width/4), (height/4)+30*5);
-    text("click izquierdo: seleccionar ficha", (width/2)-(width/4), (height/4)+30*6);
-    text("click derecho: verificar victoria", (width/2)-(width/4), (height/4)+30*7);
-    text("rueda del raton: rotar figura", (width/2)-(width/4), (height/4)+30*8);
-    text("click rueda: espejo paralelogramo", (width/2)-(width/4), (height/4)+30*9);
+    int tamano=19;
+    textSize(tamano);
+    text("1: juego libre", (width/2)-(width/4), (height/4)+tamano);
+    text("2: casa", (width/2)-(width/4), (height/4)+tamano*2);
+    text("3: gato", (width/2)-(width/4), (height/4)+tamano*3);
+    text("4: pato", (width/2)-(width/4), (height/4)+tamano*4);
+    text("5: condor", (width/2)-(width/4), (height/4)+tamano*5);
+    text("click izquierdo: seleccionar ficha", (width/2)-(width/4), (height/4)+tamano*6);
+    text("click derecho: verificar victoria", (width/2)-(width/4), (height/4)+tamano*7);
+    text("rueda del raton: rotar figura", (width/2)-(width/4), (height/4)+tamano*8);
+    text("click rueda: espejo paralelogramo", (width/2)-(width/4), (height/4)+tamano*9);
+    text("w,a,s,d movimiento ", (width/2)-(width/4), (height/4)+tamano*10);
+    text("r,t,y,u,i,o,p selección figuras ", (width/2)-(width/4), (height/4)+tamano*11);
+    text("( Q ) rotación figuras ", (width/2)-(width/4), (height/4)+tamano*12);
+    text("( Z ) cambio de velocidad ", (width/2)-(width/4), (height/4)+tamano*13);
+    text("( x ) espejo paralelogramo ", (width/2)-(width/4), (height/4)+tamano*14);
   }
   jill=false;
+  key='z';
 }
 void keyPressed() {
-  if (key==CODED) {
-    if (keyCode==ALT) {
+  if (key=='m' || key=='M') {
+    
       pistas=true;
+    
+  }
+  if (control<7) {
+    switch (key) {
+    case 'w':
+    case 'W':
+      {
+        figuras[control][0]+=0;
+        figuras[control][1]-=movtec;
+        break;
+      }
+    case 's':
+    case 'S':
+      figuras[control][0]+=0;
+      figuras[control][1]+=movtec;
+      break;
+    case 'a':
+    case 'A':
+      figuras[control][0]-=movtec;
+      figuras[control][1]+=0;
+      break;
+    case 'd':
+    case 'D':
+      {
+        figuras[control][0]+=movtec;
+        figuras[control][1]+=0;
+        break;
+      }
+    case 'q':
+    case 'Q':
+      figuras[control][2]+=PI/4;
+    default:
+      break;
+    }
+    if (key=='z' || key=='Z') {
+      if (movtec==1) {
+        movtec=20;
+      } else {
+        movtec=1;
+      }
+    }
+    if((key=='x' || key=='X') && control==6){
+      if (espejo_paral==1) {
+        espejo_paral=0;
+      } else if (espejo_paral==0) {
+        espejo_paral=1;
+      } else {
+        System.out.println("error primario numero 4 ");
+      }
     }
   }
 }
 void keyReleased() {
-  if (key==CODED) {
-    if (keyCode==ALT) {
+  if (key=='m' || key=='M') {
+    
       pistas=false;
-    }
+    
   }
 }
 void mouseWheel(MouseEvent event) {
