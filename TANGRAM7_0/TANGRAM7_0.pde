@@ -770,3 +770,8 @@ boolean paralelol_l(float a, float b, float angulos, float escala, int color_ri,
     return false;
   }
 }
+//////////////////
+/* 
+codigo escrito por Laura Valentina Triana y Hector Fabio Chaparro Fontalvo
+*/
+///////////////////
