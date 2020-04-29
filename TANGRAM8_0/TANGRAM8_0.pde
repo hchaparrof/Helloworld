@@ -412,7 +412,7 @@ void draw() {
     fill(255, 255, 255);
     rect((width/2)+50, (height/2)-10, 400+100, 300-20);
     fill(0, 0, 0);
-    int tamano=19;
+    int tamano=18;
     textSize(tamano);
     text("1: juego libre", (width/2)-(width/4), (height/4)+tamano);
     text("2: casa", (width/2)-(width/4), (height/4)+tamano*2);
@@ -428,6 +428,7 @@ void draw() {
     text("( Q ) rotación figuras ", (width/2)-(width/4), (height/4)+tamano*12);
     text("( Z ) cambio de velocidad ", (width/2)-(width/4), (height/4)+tamano*13);
     text("( x ) espejo paralelogramo ", (width/2)-(width/4), (height/4)+tamano*14);
+    text("( v ) verificación vistoria ", (width/2)-(width/4), (height/4)+tamano*15);
   }
   jill=false;
   key='z';
