@@ -52,15 +52,18 @@ class Figure {
     Seleccionado=seleccionado;
   }
   /*void mouseReleased() {
-    System.out.println("prueba");
-    if (mouseButton==LEFT) {
-      if (Seleccionado) {
-        Seleccionado=false;
-        overfigure2=false;
-      } else {
-      }
-    }
-  }*/
+   System.out.println("prueba");
+   if (mouseButton==LEFT) {
+   if (Seleccionado) {
+   Seleccionado=false;
+   overfigure2=false;
+   } else {
+   }
+   }
+   }*/
+  void cambiarang(int ang) {
+    angle+=ang;
+  }
   void select_move() {
     boolean overfigure = false;
     color c;
@@ -72,7 +75,7 @@ class Figure {
         overfigure=false;
       }
     }
-    if(Seleccionado){
+    if (Seleccionado) {
       System.out.println(Seleccionado);
       x=mouseX;
       y=mouseY;
@@ -83,19 +86,44 @@ class Figure {
         overfigure2=!overfigure2;
         mousePressed=false;
         /*x = mouseX;
-        y = mouseY;*/
+         y = mouseY;*/
       }
       if (mouseButton==LEFT && overfigure && !Seleccionado && !overfigure2) {
         Seleccionado=true;
         overfigure2=true;
         mousePressed=false;
         /*x = mouseX;
-        y = mouseY;*/
+         y = mouseY;*/
       }
       if (mouseButton==RIGHT && overfigure) {
         angle += PI/12;
         mousePressed=false;
       }
+    }
+  }
+}
+void mouseWheel(MouseEvent event) {
+  if (overfigure2) {
+    if (square.Seleccionado) {
+      square.angle += ((PI/4)*(event.getCount()));
+    }
+    if (parall.Seleccionado) {
+       parall.angle += ((PI/4)*(event.getCount()));
+    }
+    if (triangle1.Seleccionado) {
+       triangle1.angle += ((PI/4)*(event.getCount()));
+    }
+    if (triangle2.Seleccionado) {
+       triangle2.angle += ((PI/4)*(event.getCount()));
+    }
+    if (triangle3.Seleccionado) {
+       triangle3.angle += ((PI/4)*(event.getCount()));
+    }
+    if (triangle4.Seleccionado) {
+       triangle4.angle += ((PI/4)*(event.getCount()));
+    }
+    if (triangle5.Seleccionado) {
+       triangle5.angle += ((PI/4)*(event.getCount()));
     }
   }
 }
