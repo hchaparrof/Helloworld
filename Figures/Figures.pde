@@ -74,7 +74,46 @@ void setup() {
 }
 void draw() {
   background(0, 255, 162);
-  nivel1.display();
+  char guardarkey='a';
+  ///////////seleccion niveles
+  if ((key == '1' || key=='2' || key=='4' || key=='3' || key == '5')) {
+    guardarkey=key;
+  } else {
+  }
+  switch (guardarkey) { 
+  case '1':
+    background(0, 255, 162);
+    break;
+  case '2':
+    background(0, 255, 162);
+    nivel1.display();
+    break;
+  case '3':
+    background(0, 255, 162);
+    nivel2.display();
+    break;
+  /*case '4':
+    guardarkey='4';
+    cs4=(255);
+    cs2=color(0, 255, 162);
+    shape(s4, 0, 0);
+    tint(255, 0);
+    image(niveles, width/2, height/2);
+    break;
+  case '5':
+    guardarkey='5';
+    cs4=color(0, 255, 162);
+    cs2=color(0, 255, 162);
+    tint(255, 255);
+    scale((float)(Math.sqrt((39287.0/26688.0))));
+    image(condor, (width/2)+50, height/2);
+    tint(255, 0);
+    scale(1/(float)(Math.sqrt((39287.0/26688.0))));
+    break;*/
+  default:
+    break;
+  }
+  ///////////////////////////seleccion niveles
   square.display();
   parall.display();
   triangle1.display();
@@ -92,7 +131,7 @@ void draw() {
   int contadorv=0;
   loadPixels();
   for (int i=0;i<(width*height);i++){
-    if((red(pixels[i])==0 && green(pixels[i])==255 && blue(pixels[i])==162)){
+    if((255-(red(pixels[i]))<5 && (255-green(pixels[i]))<5 && (255-blue(pixels[i]))<5)){
       contadorv++;
     }
   }
