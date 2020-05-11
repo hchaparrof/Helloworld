@@ -18,6 +18,7 @@ class FigureParall extends Figure {
     rotate(angle);
     stroke(c1);
     fill(c2);
+    scale(1,rotparall);
     quad(x1, y1, x2, y2, x3, y3, x4, y4);
     popMatrix();
   //}
