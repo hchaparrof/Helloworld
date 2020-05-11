@@ -13,7 +13,7 @@ int contador=0;
 int contador3;
 int delta1=0;
 void setup() {
-  int contador3=0;
+  contador3=0;
   int delta1=0;
   size(800, 600);
   background(0, 255, 162);
@@ -135,8 +135,9 @@ void draw() {
       contadorv++;
     }
   }
+  System.out.println(contador3 + " fgdhdv ");
   System.out.println(contador + " fgdhdv ");
-  float rason=((float)contadorv)/((float)contador);
+  float rason=((float)contadorv)/(((float)contador3)-((float)contador));
   if(rason<0.1 && rason<1){
     System.out.println("ganaste " + rason);
   }else{
