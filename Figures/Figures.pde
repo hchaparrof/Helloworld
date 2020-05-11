@@ -137,7 +137,7 @@ void draw() {
   }
   System.out.println(contador + " fgdhdv ");
   float rason=((float)contadorv)/((float)contador);
-  if(rason>0.9964 && rason<1){
+  if(rason<0.1 && rason<1){
     System.out.println("ganaste " + rason);
   }else{
     System.out.println("perdiste" + rason);
