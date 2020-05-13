@@ -7,12 +7,15 @@ FigureTriangle triangle4;
 FigureTriangle triangle5;
 Nivel nivel1;
 Nivel nivel2;
+PImage fondo;
 int rotparall=1;
 boolean overfigure2 = false;
 int contador=0;
 int contador3;
 int delta1=0;
+boolean sabe=false;
 void setup() {
+  fondo=loadImage ("prueba.jpg");
   contador3=0;
   int delta1=0;
   size(800, 600);
@@ -73,7 +76,15 @@ void setup() {
   triangle5.y=69;
 }
 void draw() {
+  System.out.println(sabe);
+  if (sabe) {
+    System.out.println(" sabe ");
+    save("prueba.jpg");
+    sabe=false;
+  }
   background(0, 255, 162);
+  imageMode(CENTER);
+  image(fondo,(width/2), height/2);
   char guardarkey='a';
   ///////////seleccion niveles
   if ((key == '1' || key=='2' || key=='4' || key=='3' || key == '5')) {
@@ -92,24 +103,24 @@ void draw() {
     background(0, 255, 162);
     nivel2.display();
     break;
-  /*case '4':
-    guardarkey='4';
-    cs4=(255);
-    cs2=color(0, 255, 162);
-    shape(s4, 0, 0);
-    tint(255, 0);
-    image(niveles, width/2, height/2);
-    break;
-  case '5':
-    guardarkey='5';
-    cs4=color(0, 255, 162);
-    cs2=color(0, 255, 162);
-    tint(255, 255);
-    scale((float)(Math.sqrt((39287.0/26688.0))));
-    image(condor, (width/2)+50, height/2);
-    tint(255, 0);
-    scale(1/(float)(Math.sqrt((39287.0/26688.0))));
-    break;*/
+    /*case '4':
+     guardarkey='4';
+     cs4=(255);
+     cs2=color(0, 255, 162);
+     shape(s4, 0, 0);
+     tint(255, 0);
+     image(niveles, width/2, height/2);
+     break;
+     case '5':
+     guardarkey='5';
+     cs4=color(0, 255, 162);
+     cs2=color(0, 255, 162);
+     tint(255, 255);
+     scale((float)(Math.sqrt((39287.0/26688.0))));
+     image(condor, (width/2)+50, height/2);
+     tint(255, 0);
+     scale(1/(float)(Math.sqrt((39287.0/26688.0))));
+     break;*/
   default:
     break;
   }
@@ -130,22 +141,35 @@ void draw() {
   triangle5.select_move();
   int contadorv=0;
   loadPixels();
-  for (int i=0;i<(width*height);i++){
-    if((255-(red(pixels[i]))<5 && (255-green(pixels[i]))<5 && (255-blue(pixels[i]))<5)){
+  for (int i=0; i<(width*height); i++) {
+    if ((255-(red(pixels[i]))<5 && (255-green(pixels[i]))<5 && (255-blue(pixels[i]))<5)) {
       contadorv++;
     }
   }
   System.out.println(contador3 + " fgdhdv ");
   System.out.println(contador + " fgdhdv ");
   float rason=((float)contadorv)/(((float)contador3)-((float)contador));
-  if(rason<0.1 && rason<1){
+  if (rason<0.1 && rason<1) {
     System.out.println("ganaste " + rason);
-  }else{
+  } else {
     System.out.println("perdiste" + rason);
   }
-  if(rason>1){
+  if (rason>1) {
     System.out.println(" error rason verificación victoria ");
   }
+  /*if (key=='l') {
+   System.out.println(" l ");
+   loadPixels();
+   for (int i=0; i<height*width; i++) {
+   if (pixels[i]!=color(0, 255, 162)) {
+   pixels[i]=color(255,255,255);
+   }
+   System.out.println(" prueba ");
+   sabe=true;
+   }
+   updatePixels();
+   key='s';
+   }*/
 }
 
 class Figure {
@@ -207,11 +231,11 @@ class Figure {
          y = mouseY;*/
       }
       if (mouseButton==CENTER && parall.Seleccionado) {
-        if(rotparall==1){
+        if (rotparall==1) {
           rotparall=-1;
-        }else if(rotparall==-1){
+        } else if (rotparall==-1) {
           rotparall=1;
-        }else{
+        } else {
           System.out.println("error espejo paral, figures");
         }
         mousePressed=false;

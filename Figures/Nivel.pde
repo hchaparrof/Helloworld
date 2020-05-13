@@ -1,6 +1,5 @@
 class Nivel {
   Nivel() {
-    super();
   }
   float escala;
   PImage nibel;
