@@ -1,4 +1,7 @@
+BufferedReader reader;
+PrintWriter output;
 ArrayList<Nivel> niveles = new ArrayList<Nivel>();
+int nivelesm=0;
 int guardarkey=-1;
 boolean nose=false;
 FigureSquare square;
@@ -21,6 +24,19 @@ int contador3;
 int delta1=0;
 boolean sabe=false;
 void setup() {
+  reader = createReader("niveles.txt");
+  String line;
+  try {
+    line = reader.readLine();
+  } catch (IOException e) {
+    e.printStackTrace();
+    line = null;
+  }
+  if(line==null){
+    System.out.println( " error lectura niveles.txt");
+  }else{
+    nivelesm= Integer.parseInt(line);
+  }
   System.out.print((int)'2');
   //fondo=loadImage ("prueba.jpg");
   contador3=0;
@@ -34,16 +50,10 @@ void setup() {
   triangle3 = new FigureTriangle(685, 218, -PI/4, 70, 1, color(0, 128, 255), color(0, 128, 255), false);
   triangle4 = new FigureTriangle(166, 395, -PI/2, 100, 1, color(255, 255, 0), color(255, 255, 0), false);
   triangle5 = new FigureTriangle(135, 69, 0, 100, 1, color(191, 63, 192), color(191, 63, 192), false);
-  for (int i=0; i<3; i++) {
+  for (int i=0; i<nivelesm; i++) {
     Nivel x =new Nivel();
     x.escala=1;
     x.nibel=loadImage ("nivel"+ i + ".PNG");
-    niveles.add(x);
-  }
-  for (int i=0; i<1; i++) {
-    Nivel x =new Nivel();
-    x.escala=1;
-    x.nibel=loadImage ("nivelc"+ i + ".PNG");
     niveles.add(x);
   }
   square.display();
@@ -94,7 +104,16 @@ void draw() {
   System.out.println(sabe);
   if (sabe) {
     System.out.println(" sabe ");
-    save("nivelc" + numero + ".PNG");
+    save("nivel" + nivelesm + ".PNG");
+    Nivel x =new Nivel();
+    x.escala=1;
+    x.nibel=loadImage ("nivel"+ nivelesm + ".PNG");
+    niveles.add(x);
+    nivelesm++;
+    output = createWriter("niveles.txt"); 
+    output.println(nivelesm);
+    output.flush();
+    output.close();
     sabe=false;
   }
   background(0, 255, 162);
@@ -107,7 +126,7 @@ void draw() {
       }
       key='m';
     } 
-    if ((guardarkey>2 || guardarkey<-1)) {
+    if ((guardarkey>nivelesm-1 || guardarkey<-1)) {
       if (guardarkey>2) {
         guardarkey=-1;
       } else {
@@ -155,18 +174,18 @@ void draw() {
   if (rason>1) {
     System.out.println(" error rason verificación victoria ");
   }
-  if (key=='l') {
+  if (keyPressed && key=='l') {
     System.out.println(" l ");
     loadPixels();
     for (int i=0; i<height*width; i++) {
       if (pixels[i]!=color(0, 255, 162)) {
         pixels[i]=color(255, 255, 255);
       }
-      System.out.println(" prueba ");
       sabe=true;
     }
+    System.out.println(" prueba ");
     updatePixels();
-    key='s';
+    key='m';
   }
   key='n';
 }
