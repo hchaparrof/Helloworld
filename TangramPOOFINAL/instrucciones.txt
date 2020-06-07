@@ -1,0 +1,14 @@
+-el juego está por defecto en el modo creador.
+-para cambiar de nivel se da click sobre la 'u' (up) o 'b' bottom, 
+para cambiar entre niveles y el modo creador.
+- la comprobación de victoria es automatica y se registra 
+en la consola.
+-rotación de figuras con la rueda del raton 
+-rotación especial del paralelogramo con el boton central del raton.
+selección de fichas: se da click izquierdo sobre la ficha deseada 
+a mover
+-guardar un nivel creado en el modo creador se hace con la tecla 'l' 
+el nivel va a ser jugable inmediatamente y además se guardara una 
+imagen en la ubicación del juego.
+
+
