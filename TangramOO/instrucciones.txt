@@ -1,0 +1,16 @@
+﻿-El juego está por defecto en el modo creador.
+-Para cambiar de nivel se da click sobre la 'u' (up) o 'b'(bottom).
+-La comprobación de victoria es automatica y se registra 
+en la consola.
+-Selección de fichas: se da click izquierdo sobre la ficha deseada 
+a mover o se presionan las teclas 0,1,2,3,4,5,6 para cada ficha.
+-Moviniento de las figuras sincronizado con el mouse o las techas 'w' arriba,'a' abajo,'s' izquierda,'d' derecha.
+-Rotación de figuras con la rueda del raton o tecla 'r'. 
+-Rotación especial del paralelogramo con el boton central del raton o tecla 'e'.
+-Guardar un nivel creado en el modo creador se hace con la tecla 'l' 
+el nivel va a ser jugable inmediatamente y además se guardara una 
+imagen en la ubicación del juego.
+-números del 0 al 6 para escoger ficha para mover.
+-r para rotar la ficha seleccionada anteriormente 
+-w, a, s, d para mover la ficha seleccionada.
+-tecla 'e' para rotación especial del paralelogramo

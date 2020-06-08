@@ -10,5 +10,3 @@ a mover
 -guardar un nivel creado en el modo creador se hace con la tecla 'l' 
 el nivel va a ser jugable inmediatamente y además se guardara una 
 imagen en la ubicación del juego.
-
-
