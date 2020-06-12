@@ -14,7 +14,7 @@ void setup() {
   nibel=loadImage ("moneda2.jpeg");
   System.out.println(nibel.width);
   System.out.println(nibel.height);
-  float nwidth=nibel.width/10;
+  //float nwidth=nibel.width/10;
   size(292, 520);
   //size(nibel.width/escala, nibel.height/escala);
   //background(0, 255, 162);
@@ -87,11 +87,13 @@ void draw() {
       int contador=0;
       for(int i=0;i<width*height;i++){
         if(red(pixels[i])<20 && green(pixels[i])<20 && blue(pixels[i])<20){
+          pixels[1]=color(0,0,255);
+          
           contador++;
-          area=(contador*1.0f)/(fur*1.0f);
         }
       }
-      System.out.println(2);
+      updatePixels();
+      area=(contador*1.0f)/(fur*1.0f);
       System.out.println(area);
     }
     if (key=='u') {
