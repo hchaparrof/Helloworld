@@ -40,7 +40,7 @@ abstract class Boton {
     float porc=0.07f;
     float deltadist=20;
     float distlocal=7;
-    deltadist=displayHeight*0.5;
+    deltadist=displayHeight*0.3;
     distlocal=y-displayHeight*0.1;
     porc=distlocal*1.0f/deltadist*1.0f;
     float b=0;
@@ -49,6 +49,7 @@ abstract class Boton {
     float redx=red(a);
     float greenx=red(a);
     float bluex=red(a);
+    System.out.println(porc + " porc");
     for (int i=0; i<height*width; i++) {
       if ((red(pixels[i])>redx-b && red(pixels[i])<redx+b) && (green(pixels[i])>greenx-b && green(pixels[i])<greenx+b) && (blue(pixels[i])>bluex-b && blue(pixels[i])<bluex+b)) {
         pixels[i]=color(0,0,0);

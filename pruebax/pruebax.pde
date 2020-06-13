@@ -53,6 +53,7 @@ void draw() {
             movil.y=displayHeight*0.1;
           } else if (movil.y>=displayHeight*0.4) {
             movil.y=displayHeight*0.4;
+            //System.out.println(movil.porc);
           }
         }
       }
@@ -70,8 +71,8 @@ void touchStarted() {
 void mouseReleased() {
   movil.selec=false;
 }
-void touchEnded() {
+/*void touchEnded() {
   //println("touch ended");
   movil.selec=false;
-}
+}*/
 //}*/
