@@ -82,20 +82,17 @@ class Imagen{
           for (int i=0; i<displayWidth; i++) {
             for (int j=0; j<displayHeight; j++) {
               if (mayor) {
-                if (i*m+b<j /*& pixels[j*width+i]!=color(0,0,0)*/) {
-                  pixels[j*width+i] = color(255, 65, 238);
-                  //set(i, j, color(255, 65, 238));
+                if (i*m+b<j) {
+                  pixels[j*width+i] = fuksia;
                 }
               } else {
-                if (i*m+b>j /*& pixels[j*width+i]!=color(0,0,0)*/) {
-                  pixels[j*width+i] = color(255, 65, 238);
-                  //set(i, j, color(255, 65, 238));
+                if (i*m+b>j) {
+                  pixels[j*width+i] =fuksia;
                 }
               }
             }
           }
           updatePixels();
-          //linea();
           mousePressed=false;
           break;
       default:
