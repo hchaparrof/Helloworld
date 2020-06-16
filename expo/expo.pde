@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.FileReader;
 void setup() {
   BufferedReader reader;
   String line="42";
@@ -13,6 +15,16 @@ void setup() {
     System.out.println(e);
   }
   System.out.println("seguimos");
+  try{
+            //si el nombre del fichero no existe, lanza el catch
+            FileReader fr=new FileReader("casa");
+ 
+            //Esta linea no se ejecuta
+            System.out.println("No veras este mensaje");
+        }catch(IOException e){
+            System.out.println(e);
+        }
+  System.out.println("seguimos 2");
   try {
     reader = createReader("expo.txt");
     line = reader.readLine();
@@ -23,9 +35,8 @@ void setup() {
   catch (NullPointerException e) {
     e.printStackTrace();
     System.out.println(e);
-    line = null;
   }
-  System.out.println(line);
+  System.out.println(" seguimos 3 ");
 }
 void draw() {
 }
