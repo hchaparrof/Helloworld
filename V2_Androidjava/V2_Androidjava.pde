@@ -1,4 +1,5 @@
 Boton [] boton;
+int menor=0;
 int corte=0;
 ArrayList<float[][]> cortes = new ArrayList<float[][]>();
 int p;
@@ -15,6 +16,11 @@ float cmcuadrado;
 
 void setup() {
   fullScreen();
+  if(displayWidth>displayHeight){
+    menor=displayHeight;
+  }else{
+    menor=displayWidth;
+  }
   System.out.println(displayWidth + " h " + displayHeight + " f ");
   background(255);
   boton = new Boton[5];
@@ -26,8 +32,8 @@ void setup() {
   botones.get(1).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.12f, displayHeight*0.05f, color(255, 128, 0), false ));//distancia                            // (1,0)
   botones.get(2).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.34f, displayHeight*0.05f, color(255, 128, 0), false ));//cambio pixel                         // (2,0)
   botones.get(3).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.56f, displayHeight*0.05f, color(255, 128, 0), false ));//eliminar regla                       // (3,0)
-  botones.get(2).add(new Movil (displayWidth*0.9f, displayHeight*0.1, 10*displayDensity, color(255, 128, 0), false ));//rango                                        // (2,1)
-  botones.get(3).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.56f, 10*displayDensity, color(255, 128, 0), false ));//cuadro color // (3,1)
+  botones.get(2).add(new Movil (displayWidth*0.9f, displayHeight*0.1, menor*0.025, color(255, 128, 0), false ));//rango                                        // (2,1)
+  botones.get(3).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.56f, menor*0.025, color(255, 128, 0), false ));//cuadro color // (3,1)
   ////////////
 }
 Boton encont(int x, int y) {

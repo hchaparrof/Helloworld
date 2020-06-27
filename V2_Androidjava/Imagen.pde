@@ -5,8 +5,8 @@ class Imagen{
   }
   void displai(){
     float s;
-    float w=displayWidth-120*displayDensity;
-    float h=displayHeight-80*displayDensity;
+    float w=displayWidth-menor*0.3;
+    float h=displayHeight-0.2*menor;
     if((w/hoja.width)<(h/hoja.height)){
       s=(w/hoja.width);   
     }else{
