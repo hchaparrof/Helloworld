@@ -1,5 +1,3 @@
-float ref=0;
-float negro=0;
 float areah=0;
 float s;
 class Imagen{
@@ -109,32 +107,34 @@ class Imagen{
     updatePixels();
   }
   void aret(){
-    referencia();
-    totaln();
-    area();
+    float ref=referencia();
+    int negro=totaln();
+    area(negro,ref);
   }
-  void referencia(){
+  int referencia(){
     loadPixels();
-    ref=0;
+    int ref=0;
     for(int i=0;i<displayWidth*displayHeight;i++){
       if(pixels[i]==color(0,0,1) ){
         ref++;
       }
     }
     System.out.println("ref"+ref);
+    return ref;
   }
-  void totaln(){
+  int totaln(){
     loadPixels();
-    negro=0;
+    int negro=0;
     for(int i=0;i<displayWidth*displayHeight;i++){
       if(pixels[i]==color(0,0,0) ){
         negro++;
       }
     }
     System.out.println("negro"+negro);
+    return negro;
   }
-  void area(){
-    areah=(4*(negro)/ref);
+  void area(int negro, float ref){
+    areah=(4.0f*(negro*1.0f)/ref*1.0f);
     System.out.println("area"+areah);
   }
 }

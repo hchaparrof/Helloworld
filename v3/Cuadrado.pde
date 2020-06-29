@@ -19,12 +19,23 @@ class Cuadrado extends Boton {
     rect(displayWidth-(menor*0.1),displayHeight-(menor*0.1),displayWidth-(menor*0.1)+displayWidth+(menor*0.05),displayHeight-(menor*0.1)+(menor*0.05));
     popMatrix();
   }
-  @Override void coloc(boolean a){
-    if(a){
+  @Override void coloc(int a){
+    switch(a) {
+      case 0:
+      cref=provic;
+      break;
+      case 1:
+      choja=provic;
+      break;
+      case 2:
+      choja=provic;
+      break;
+    }
+    /*if(a){
       choja=provic;
     }else{
       cref=provic;
-    }
+    }*/
   }
   @Override void rango (color a,color gf) {
   }
