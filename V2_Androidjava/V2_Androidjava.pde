@@ -24,7 +24,7 @@ void setup() {
   System.out.println(displayWidth + " h " + displayHeight + " f ");
   background(255);
   boton = new Boton[5];
-  myImage= new Imagen (loadImage ("hoja1.jpg"));
+  myImage= new Imagen (loadImage ("hoja.jpg"));
   for (int i=0; i<4; i++) {
     botones.add(new ArrayList<Boton>());
   }
