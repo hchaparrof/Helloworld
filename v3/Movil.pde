@@ -2,6 +2,8 @@ class Movil extends Boton {
   Movil(float tempX, float tempY, float tempD, color tempC1, color tempC2,  boolean tempSelec){
     super(tempX, tempY, tempD, tempC1, tempC2, tempSelec);
   }
+    @Override void escogerc(){}
+    @Override void coloc(boolean a){}
   @Override void dibujarboton(){
     float x1 = -d;
     float y1 = -d;

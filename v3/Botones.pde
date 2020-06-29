@@ -34,6 +34,8 @@ abstract class Boton {
   abstract void dibujarboton();
   abstract void rango (color a,color gf);
   abstract void desplazar();
+  abstract void escogerc();
+  abstract void coloc(boolean a);
   void seleccion() {
     if (selec) {
       //stroke(106,114,128);

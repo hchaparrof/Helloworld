@@ -10,11 +10,13 @@ int first=0;
 color recorte=color(255, 65, 238);
 boolean sabe=true;
 boolean derecha=false;
+boolean provec1=false, provec2=false;
 float cmcuadrado;
-//int p;
-
+color provic;
+color choja=color(138, 143, 59);
+color cref=color(255, 0, 0);
+int botonum=5;
 void setup() {
-  int botonnum=6;
   fullScreen();
   background(255);
   myImage= new Imagen (loadImage ("hoja1.jpeg"));
@@ -24,7 +26,7 @@ void setup() {
     menor=displayWidth;
   }
   System.out.println(displayWidth + " h " + displayHeight + " f ");
-  for (int i=0; i<6; i++) {
+  for (int i=0; i<botonum; i++) {
     botones.add(new ArrayList<Boton>());
   }
   ///
@@ -35,12 +37,15 @@ void setup() {
   ////
   //botones area
   botones.get(2).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.269f, displayHeight*0.04f, color(255, 128, 0), color(255, 128, 0), false ));//cambio pixel    // (2,0)
-  /**/botones.get(2).add(new Movil (displayWidth*0.9f, displayHeight*0.1, menor*0.025, color(228, 235, 246), color(228, 235, 246), false ));//rango blanco            // (2,1)
-  /**/botones.get(2).add(new Movil (displayWidth*0.85f, displayHeight*0.1, menor*0.025, color(17, 112, 185), color(17, 112, 185), false ));//rango rojo               // (2,2)   
-  /**/botones.get(2).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.57f, menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
+  /**/  botones.get(2).add(new Movil (displayWidth*0.9f, displayHeight*0.1, menor*0.025, color(228, 235, 246), color(228, 235, 246), false ));//rango blanco            // (2,1)
+  /**/  botones.get(2).add(new Movil (displayWidth*0.85f, displayHeight*0.1, menor*0.025, color(17, 112, 185), color(17, 112, 185), false ));//rango rojo               // (2,2)   
+  /**/  botones.get(2).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.269f, menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
   //////
   //eliminar regla
   botones.get(3).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.423f, displayHeight*0.04f, color(255, 128, 0), color(255, 128, 0), false ));                  // (3,0)
+  botones.get(4).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.577f, displayHeight*0.04f, color(255, 128, 0), color(255, 128, 0), false ));                  // (3,0)
+  /**/  botones.get(4).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.577f+(menor*0.025+menor*0.01), menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
+  /**/  botones.get(4).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.577f-(menor*0.025+menor*0.01), menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
 
 
   ////////////
@@ -59,17 +64,19 @@ void draw() {
       break;
     }
   } 
-  for (int i=0; i<4; i++) {
+  for (int i=0; i<botonum; i++) {
     encont(i, 0).display();
     encont(i, 0).seleccion();
   }
-  for (int i=0; i<4; i++) {
+  for (int i=0; i<botonum; i++) {
     if (encont(i, 0).selec ) {
       guardarboton= i;
       switch(guardarboton) {
       case 0:
+        choja=color(138, 143, 59);
+        cref=color(255, 0, 0);
         background(255, 255, 255);
-        for (int j=0; j<5; j++) {
+        for (int j=0; j<botonum; j++) {
           encont(j, 0).selec=false;
         }
         encont(2, 1).selec=false;
@@ -82,18 +89,19 @@ void draw() {
       case 1:
         if (mousePressed) {
           myImage.distancia();
+          mousePressed=false;
         }
         break;
       case 2:
         encont(2, 1).display();
         encont(2, 1).seleccion();
-        encont(2, 1).rango(color(138, 143, 59), color(0, 0, 0));
+        encont(2, 1).rango(choja, color(0, 0, 0));
         encont(2, 1).desplazar();
 
 
         encont(2, 2).display();
         encont(2, 2).seleccion();        
-        encont(2, 2).rango(color(255, 0, 0), color(0, 0, 1));
+        encont(2, 2).rango(cref, color(0, 0, 1));
         encont(2, 2).desplazar();
         encont(2, 3).display();
         encont(2, 3).seleccion();            
@@ -109,14 +117,37 @@ void draw() {
          }*/
         myImage.eliminar();
         break;
+      case 4:
+        encont(4, 0).escogerc();
+        encont(4, 1).display();
+        encont(4, 1).seleccion();
+        encont(4, 2).display();
+        encont(4, 2).seleccion();
+        if (mousePressed) {
+          provec2=!provec2;
+          mousePressed=false;
+        }
+        if (encont(4, 1).selec || encont(4, 2).selec) {
+          if (encont(4, 1).selec) {
+            encont(4, 1).coloc(true);
+            encont(4, 1).selec=false;
+          } else {
+            encont(4, 2).coloc(false);
+            encont(4, 2).selec=false;
+          }
+        }
+
+        break;
       }
     }
   }
 }
-void mouseClicked() {
-  encont(2, 3).selec=false;
-}
 void mouseReleased() {
   encont(2, 1).selec=false;
   encont(2, 2).selec=false;
+}
+void touchEnded() {
+  if (encont(4, 0).selec) {
+    provec2=true;
+  }
 }

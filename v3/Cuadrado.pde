@@ -9,6 +9,23 @@ class Cuadrado extends Boton {
     float y2 = 2*d;
     rect(x1, y1, x2, y2, 7);
   }
+  @Override void escogerc(){
+    if(!provec2){
+      provic=(get(mouseX,mouseY));
+    }
+    pushMatrix();
+    stroke(provic);
+    fill(provic);
+    rect(displayWidth-(menor*0.1),displayHeight-(menor*0.1),displayWidth-(menor*0.1)+displayWidth+(menor*0.05),displayHeight-(menor*0.1)+(menor*0.05));
+    popMatrix();
+  }
+  @Override void coloc(boolean a){
+    if(a){
+      choja=provic;
+    }else{
+      cref=provic;
+    }
+  }
   @Override void rango (color a,color gf) {
   }
   @Override void desplazar() {
