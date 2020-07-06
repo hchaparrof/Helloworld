@@ -1,6 +1,7 @@
 ArrayList<float[][]> cortes = new ArrayList<float[][]>();
 ArrayList<ArrayList<Boton>> botones = new ArrayList<ArrayList<Boton>>();
 Imagen myImage;
+float z=0;
 int menor=0;
 int corte=0;
 int guardarboton;
@@ -29,7 +30,8 @@ void setup() {
   System.out.println(displayWidth + " h " + displayHeight + " f ");
   for (int i=0; i<botonum; i++) {
     botones.add(new ArrayList<Boton>());
-  }for(int i=0;i<botonum;i++){
+  }
+  for (int i=0; i<botonum; i++) {
     System.out.println(((100.0f/((4.0f*botonum)+2.0f))*4f*((i*1.0f)+1.0f))-(100.0f/((4.0f*botonum)+2.0f)));
     botones.get(i).add(new Cuadrado (displayHeight*0.1f, displayHeight*(((100/((4*botonum)+2))*4*(i+1))-(100/((4*botonum)+2)))/100f, displayHeight*((100/((4*botonum)+2)))/100, color(255, 128, 0), color(255, 128, 0), false ));//cambio pixel    // (2,0)
   }
@@ -38,7 +40,6 @@ void setup() {
   ///
   ////
   //botones.get(0).add(new Cuadrado (displayHeight*0.1f, displayHeight*0.115f, displayHeight*0.04f, color(255, 128, 0), color(255, 128, 0), false ));//distancia       // (1,0)
-  /**/  botones.get(0).add(new Movil (displayWidth*0.9f, displayHeight*0.1, menor*0.025, color(86, 229, 218), color(86, 229, 218), false ));//rango blanco            // (2,1)
   /**/  botones.get(0).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.115f+(menor*0.025+menor*0.015), menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
   /**/  botones.get(0).add(new Cuadrado (displayHeight*0.1f + 2*(displayHeight*0.05f), displayHeight*0.115f-(menor*0.025+menor*0.015), menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
   /**/  botones.get(0).add(new Cuadrado (displayHeight*0.1f + 3*(displayHeight*0.05f), displayHeight*0.115f, menor*0.025, color(255, 0, 0), color(255, 0, 0), false ));  // (2,3)
@@ -61,6 +62,19 @@ void setup() {
 Boton encont(int x, int y) {
   return botones.get(x).get(y);
 }  
+void cuadraera(float areah) {
+  pushMatrix();
+  stroke(provic);
+  fill(0, 0, 0);
+  if (areah!=0) {
+    textSize(menor*0.02);  
+    text("área: "+areah, displayWidth-(menor*0.2), displayHeight-(menor*0.1));
+  } else {
+    textSize(menor*0.04);
+    text("-----", displayWidth-(menor*0.2), displayHeight-(menor*0.1));
+  }
+  popMatrix();
+}
 void draw() {
   background(255);
   myImage.displai();
@@ -98,40 +112,42 @@ void draw() {
       case 0:
         {
           boolean a, b;
-          a=encont(0, 2).selec;
-          b=encont(0, 3).selec;
+          a=encont(0, 1).selec;
+          b=encont(0, 2).selec;
+          encont(0, 1).display();
+          encont(0, 1).seleccion();
           encont(0, 2).display();
           encont(0, 2).seleccion();
           encont(0, 3).display();
           encont(0, 3).seleccion();
-          encont(0, 4).display();
-          encont(0, 4).seleccion();
-          if (!a && encont(0, 2).selec) {
-            encont(0, 3).selec=false;
-          }
-          if (!b && encont(0, 3).selec) {
+          cuadraera(z);
+          if (!a && encont(0, 1).selec) {
             encont(0, 2).selec=false;
           }
-          if (encont(0, 2).selec) {
+          if (!b && encont(0, 2).selec) {
+            encont(0, 1).selec=false;
+          }
+          if (encont(0, 1).selec) {
             if (mousePressed) {
               myImage.distancia();
               hdist=true;
               mousePressed=false;
             }
           }        
-          if (encont(0, 3).selec) {
-            encont(0, 1).display();
-            encont(0, 1).seleccion();
-            encont(0, 1).rango(choja, color(0, 0, 0));
-            encont(0, 1).desplazar();
+          if (encont(0, 2).selec) {
+            encont(1, 1).display();
+            encont(1, 1).seleccion();
+            encont(1, 1).rango(choja, color(0, 0, 0));
+            encont(1, 1).desplazar();
           }
-          if (encont(0, 4).selec) {
+          if (encont(0, 3).selec) {
             if (hdist==true) {
-              myImage.area(myImage.totaln(),cmcuadrado);
-            }else{
+              z=myImage.area(myImage.totaln(), cmcuadrado);
+              System.out.println("area "+ z);
+            } else {
               System.out.println("marque distancia primero");
             }
-            encont(0, 4).selec=false;
+            encont(0, 3).selec=false;
           }
           break;
         }
@@ -147,9 +163,12 @@ void draw() {
         encont(1, 2).rango(cref, color(0, 0, 1));
         encont(1, 2).desplazar();
         encont(1, 3).display();
-        encont(1, 3).seleccion();            
+        encont(1, 3).seleccion();
+        cuadraera(z);
         if (encont(1, 3).selec) {
-          myImage.aret();
+          z=myImage.aret();
+          System.out.println("area "+z);
+          encont(1,3).selec=false;
         }
         break;
       case 2:
@@ -166,13 +185,13 @@ void draw() {
         encont(3, 1).seleccion();
         encont(3, 2).display();
         encont(3, 2).seleccion();
-        encont(3, 3).display();
-        encont(3, 3).seleccion();
+        /*encont(3, 3).display();
+         encont(3, 3).seleccion();*/
         if (mousePressed) {
           provec2=!provec2;
           mousePressed=false;
         }
-        if (encont(3, 1).selec || encont(3, 2).selec || encont(3, 3).selec) {
+        if (encont(3, 1).selec || encont(3, 2).selec ) {
           if (encont(3, 1).selec || encont(3, 2).selec) {
             if (encont(3, 1).selec) {
               encont(3, 1).coloc(1);
@@ -182,8 +201,6 @@ void draw() {
               encont(3, 2).selec=false;
             }
           } else {
-            encont(3, 3).coloc(2);
-            encont(3, 3).selec=false;
           }
         }
 
@@ -194,7 +211,6 @@ void draw() {
 }
 void mouseReleased() {
   encont(1, 1).selec=false;
-  encont(0, 1).selec=false;
   encont(1, 2).selec=false;
 }
 void touchEnded() {

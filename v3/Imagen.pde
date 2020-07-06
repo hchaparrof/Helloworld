@@ -1,4 +1,3 @@
-float areah=0;
 float s;
 class Imagen{
   PImage hoja;
@@ -106,10 +105,10 @@ class Imagen{
     }
     updatePixels();
   }
-  void aret(){
+  float aret(){
     float ref=referencia();
     int negro=totaln();
-    area(negro,ref);
+    return area(negro,ref);
   }
   int referencia(){
     loadPixels();
@@ -133,8 +132,8 @@ class Imagen{
     System.out.println("negro"+negro);
     return negro;
   }
-  void area(int negro, float ref){
-    areah=(4.0f*(negro*1.0f)/ref*1.0f);
-    System.out.println("area"+areah);
+  float area(int negro, float ref){
+    float areah=(4.0f*(negro*1.0f)/ref*1.0f);
+    return areah;
   }
 }
